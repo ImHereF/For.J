@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ForYou</title>
+    <title>Menampilkan Hati dengan Loading</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,7 +13,7 @@
             justify-content: center;
             height: 100vh;
             margin: 0;
-            background-color: #87CEEB;
+            background-color: #f9f9f9;
         }
         button {
             padding: 10px 20px;
@@ -32,7 +32,7 @@
             display: none;
             width: 80%;
             background-color: #e0e0e0;
-            border-radius: 5px;
+            border-radius: 1px;
             margin-top: 20px;
         }
         #progress {
@@ -41,10 +41,11 @@
             background-color: #4caf50;
             border-radius: 5px;
             transition: width 0.1s;
+            
         }
         #heart {
             display: none;
-            font-size: 130px;
+            font-size: 100px;
             color: red;
             text-align: center;
             margin-top: 20px;
@@ -60,43 +61,32 @@
 </head>
 <body>
 
-    <button id="showHeartButton">pencet be</button>
-    <div id="loading">
-        <div id="progress"></div>
-    </div>
-    <div id="heart">😁</div>
+    <div id="heart">❤️</div>
     <div id="message"></div>
+     <button id="showHeartButton">Klik Aku</button>
+<div id="loading">
+  <div id="progress"></div>
+</div>
+<div id="heart" style="display: none;"></div> <div id="message"></div>
 
-    <script>
-        document.getElementById("showHeartButton").onclick = function() {
-            // Menghilangkan tombol dan menampilkan loading bar
-            this.style.display = "none";
-            document.getElementById("loading").style.display = "block";
+<script>
+  const showHeartButton = document.getElementById("showHeartButton");
+  const loadingDiv = document.getElementById("loading");
+  const heartDiv = document.getElementById("heart");
+  const progressDiv = document.getElementById("progress");
 
-            // Mengatur lebar progress bar
-            document.getElementById("progress").style.width = "0%";
-
-            let width = 0;
-            const loadingInterval = setInterval(function() {
-                if (width >= 100) {
-                    clearInterval(loadingInterval);
-                    // Menghilangkan loading bar setelah loading selesai
+  showHeartButton.addEventListener("click", () => {
+    // Hide the button
+    showHeartButton.style.display = "none";
+                        // Menghilangkan loading bar setelah loading selesai
                     document.getElementById("loading").style.display = "none";
                     // Menampilkan hati setelah loading selesai
                     document.getElementById("heart").style.display = "block";
                     // Memulai animasi teks
-                    typeMessage("hei kamu!", function() {
-                        typeMessage("kenapa nyerah?", function() {
-                            typeMessage("Padahal kamu udah kasih dia sesuatu", function() {
-                              typeMessage("Ada yang nungguin kamu berubah loh!", function() {
-                                  typeMessage("Lets change for the world!", function() {
-                                    typeMessage("atau kamu udah punya org lain?",function() {
-                                    typeMessage("01010011 01001101 01001110 01000111 01010010", null);
+                    typeMessage("Kamu membuatku bahagia!", function() {
+                        typeMessage("Setiap detik bersamamu sangat berharga.", function() {
+                            typeMessage("Terima kasih telah ada di hidupku!", null);
                         });
-                    });
-                    });
-                    });
-                    });
                     });
                 } else {
                     width++;
@@ -118,20 +108,26 @@
                     clearInterval(typingInterval);
                     // Memanggil callback setelah selesai mengetik
                     if (callback) {
-                        setTimeout(callback, 1000); // Tunggu 1 detik sebelum memanggil callback
+                        setTimeout(callback, 2500); // Tunggu 2.5 detik sebelum memanggil callback
                     }
                 }
             }, 100); // Kecepatan mengetik
         }
-    
-    </script>
-    
-    <p>enjoy >.<</p>
-    
-    <audio controls autoplay muted>
-    <source src="Download/[SPOTDOWNLOADER.COM] Fallin (from _Charlotte_).mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-</audio>
 
- </body>     
+    // Simulate progress bar animation (replace with your actual logic)
+    let width = 0;
+    const interval = setInterval(() => {
+      width += 10;
+      progressDiv.style.width = width + "%";
+      if (width >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          heartDiv.style.display = "block"; 
+        }, 1000); // Delay of 1 second (1000 milliseconds)
+      }
+    }, 100); // Progress bar updates every 100 milliseconds 
+  });
+</script>
+
+</body>
 </html>
